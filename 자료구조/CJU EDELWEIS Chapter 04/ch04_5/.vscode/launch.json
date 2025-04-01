@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/administrator/Documents/Git/자료구조/CJU EDELWEIS Chapter 04/ch04_5",
+      "program": "/Users/administrator/Documents/Git/자료구조/CJU EDELWEIS Chapter 04/ch04_5/build/Debug/outDebug"
+    }
+  ]
+}
