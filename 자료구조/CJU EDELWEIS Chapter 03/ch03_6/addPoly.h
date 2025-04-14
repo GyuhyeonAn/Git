@@ -2,9 +2,9 @@
 #define MAX(a,b) ((a>b)?a:b)
 #define MAX_DEGREE 50
 
-typedef struct {             // ±¸Á¶Ã¼ polynomial Á¤ÀÇ
-	int degree;              // ´ÙÇ×½ÄÀÇ Â÷¼ö¸¦ ÀúÀåÇÒ º¯¼ö
-	float coef[MAX_DEGREE];  // ´ÙÇ×½ÄÀÇ °¢ Ç×ÀÇ °è¼ö¸¦ ÀúÀåÇÒ 1Â÷¿ø ¹è¿­
+typedef struct {             // êµ¬ì¡°ì²´ polynomial ì •ì˜
+	int degree;              // ë‹¤í•­ì‹ì˜ ì°¨ìˆ˜ë¥¼ ì €ì¥í•  ë³€ìˆ˜
+	float coef[MAX_DEGREE];  // ë‹¤í•­ì‹ì˜ ê° í•­ì˜ ê³„ìˆ˜ë¥¼ ì €ì¥í•  1ì°¨ì› ë°°ì—´
 } polynomial;
 
 polynomial addPoly(polynomial A, polynomial B);

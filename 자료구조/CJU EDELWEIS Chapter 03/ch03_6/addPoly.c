@@ -1,7 +1,7 @@
 #include "addPoly.h"
 
 polynomial addPoly(polynomial A, polynomial B) {
-	polynomial C;   // ´ÙÇ×½Ä µ¡¼ÀÀÇ °á°ú ´ÙÇ×½ÄÀ» ÀúÀåÇÒ polynomial ±¸Á¶Ã¼ º¯¼ö ¼±¾ğ
+	polynomial C;   // ë‹¤í•­ì‹ ë§ì…ˆì˜ ê²°ê³¼ ë‹¤í•­ì‹ì„ ì €ì¥í•  polynomial êµ¬ì¡°ì²´ ë³€ìˆ˜ ì„ ì–¸
 	int A_index = 0, B_index = 0, C_index = 0;
 	int A_degree = A.degree, B_degree = B.degree;
 	C.degree = MAX(A.degree, B.degree);
@@ -21,7 +21,7 @@ polynomial addPoly(polynomial A, polynomial B) {
 			B_degree--;
 		}
 	}
-	return C;    // ´ÙÇ×½Ä µ¡¼ÀÀÇ °á°ú ´ÙÇ×½Ä C¸¦ ¹İÈ¯
+	return C;    // ë‹¤í•­ì‹ ë§ì…ˆì˜ ê²°ê³¼ ë‹¤í•­ì‹ Cë¥¼ ë°˜í™˜
 }
 
 void printPoly(polynomial P) {

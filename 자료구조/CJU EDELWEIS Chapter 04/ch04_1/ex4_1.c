@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include "InsertLinkedList.h"
+#include "InsertLinkedList.c"
 
 int main(void) {
 	linkedList_h  *L;

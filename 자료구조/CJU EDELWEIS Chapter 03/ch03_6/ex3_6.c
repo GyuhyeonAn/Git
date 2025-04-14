@@ -1,16 +1,17 @@
 #include <stdio.h>
 #include "addPoly.h"
+#include "addPoly.c"
 
 int main(void) {
-	polynomial A = { 3,{ 4,3,5,0 } };    // ´ÙÇ×½Ä AÀÇ ÃÊ±âÈ­
-	polynomial B = { 4,{ 3,1,0,2,1 } };  // ´ÙÇ×½Ä BÀÇ ÃÊ±âÈ­
+	polynomial A = { 3,{ 4,3,5,0 } };    // ë‹¤í•­ì‹ Aì˜ ì´ˆê¸°í™”
+	polynomial B = { 4,{ 3,1,0,2,1 } };  // ë‹¤í•­ì‹ Bì˜ ì´ˆê¸°í™”
 	polynomial C;
 
-	C = addPoly(A, B);   // ´ÙÇ×½Ä A, B¿¡ ´ëÇÑ µ¡¼ÀÀ» ¼öÇàÇÏ±â À§ÇØ addPoly ÇÔ¼ö È£Ãâ 
+	C = addPoly(A, B);   // ë‹¤í•­ì‹ A, Bì— ëŒ€í•œ ë§ì…ˆì„ ìˆ˜í–‰í•˜ê¸° ìœ„í•´ addPoly í•¨ìˆ˜ í˜¸ì¶œ 
 
-	printf("\n A(x) =");  printPoly(A);   // ´ÙÇ×½Ä A Ãâ·Â
-	printf("\n B(x) =");  printPoly(B);   // ´ÙÇ×½Ä B Ãâ·Â
-	printf("\n C(x) =");  printPoly(C);   // ´ÙÇ×½Ä C Ãâ·Â
+	printf("\n A(x) =");  printPoly(A);   // ë‹¤í•­ì‹ A ì¶œë ¥
+	printf("\n B(x) =");  printPoly(B);   // ë‹¤í•­ì‹ B ì¶œë ¥
+	printf("\n C(x) =");  printPoly(C);   // ë‹¤í•­ì‹ C ì¶œë ¥
 
 	getchar();  return 0;
 }

@@ -3,15 +3,15 @@
 #include <string.h>
 #include "CircularLinkedList.h"
 
-// °ø¹é ¿øÇü ¿¬°á ¸®½ºÆ®¸¦ »ý¼ºÇÏ´Â ¿¬»ê
+// ê³µë°± ì›í˜• ì—°ê²° ë¦¬ìŠ¤íŠ¸ë¥¼ ìƒì„±í•˜ëŠ” ì—°ì‚°
 linkedList_h* createLinkedList_h(void) {
 	linkedList_h* CL;
-	CL = (linkedList_h*)malloc(sizeof(linkedList_h));	// Çìµå ³ëµå ÇÒ´ç
-	CL->head = NULL;										// °ø¹é ¸®½ºÆ®ÀÌ¹Ç·Î NULL·Î ¼³Á¤
+	CL = (linkedList_h*)malloc(sizeof(linkedList_h));	// í—¤ë“œ ë…¸ë“œ í• ë‹¹
+	CL->head = NULL;										// ê³µë°± ë¦¬ìŠ¤íŠ¸ì´ë¯€ë¡œ NULLë¡œ ì„¤ì •
 	return CL;
 }
 
-// ¿¬°á ¸®½ºÆ®¸¦ ¼ø¼­´ë·Î Ãâ·ÂÇÏ´Â ¿¬»ê
+// ì—°ê²° ë¦¬ìŠ¤íŠ¸ë¥¼ ìˆœì„œëŒ€ë¡œ ì¶œë ¥í•˜ëŠ” ì—°ì‚°
 void printList(linkedList_h* CL) {
 	listNode* p;
 	printf(" CL = (");
@@ -28,26 +28,26 @@ void printList(linkedList_h* CL) {
 	printf(") \n");
 }
 
-// Ã¹ ¹øÂ° ³ëµå »ðÀÔ ¿¬»ê
+// ì²« ë²ˆì§¸ ë…¸ë“œ ì‚½ìž… ì—°ì‚°
 void insertFirstNode(linkedList_h* CL, char* x) {
 	listNode* newNode, * temp;
-	newNode = (listNode*)malloc(sizeof(listNode));	// »ðÀÔÇÒ »õ ³ëµå ÇÒ´ç
+	newNode = (listNode*)malloc(sizeof(listNode));	// ì‚½ìž…í•  ìƒˆ ë…¸ë“œ í• ë‹¹
 	strcpy(newNode->data, x);
-	if (CL->head == NULL) {		// ¿øÇü ¿¬°á ¸®½ºÆ®°¡ °ø¹éÀÎ °æ¿ì	
-		CL->head = newNode;		// »õ ³ëµå¸¦ ¸®½ºÆ®ÀÇ ½ÃÀÛ ³ëµå·Î ¿¬°á
+	if (CL->head == NULL) {		// ì›í˜• ì—°ê²° ë¦¬ìŠ¤íŠ¸ê°€ ê³µë°±ì¸ ê²½ìš°	
+		CL->head = newNode;		// ìƒˆ ë…¸ë“œë¥¼ ë¦¬ìŠ¤íŠ¸ì˜ ì‹œìž‘ ë…¸ë“œë¡œ ì—°ê²°
 		newNode->link = newNode;
 	}
-	else {						// ¿øÇü ¿¬°á ¸®½ºÆ®°¡ °ø¹éÀÌ ¾Æ´Ñ °æ¿ì 	
+	else {						// ì›í˜• ì—°ê²° ë¦¬ìŠ¤íŠ¸ê°€ ê³µë°±ì´ ì•„ë‹Œ ê²½ìš° 	
 		temp = CL->head;
 		while (temp->link != CL->head)
 			temp = temp->link;
 		newNode->link = temp->link;
-		temp->link = newNode;	// ¸¶Áö¸· ³ëµå¸¦ Ã¹ ¹øÂ° ³ëµåÀÎ new¿Í ¿øÇü ¿¬°á 
+		temp->link = newNode;	// ë§ˆì§€ë§‰ ë…¸ë“œë¥¼ ì²« ë²ˆì§¸ ë…¸ë“œì¸ newì™€ ì›í˜• ì—°ê²° 
 		CL->head = newNode;
 	}
 }
 
-// pre µÚ¿¡ ³ëµå¸¦ »ðÀÔÇÏ´Â ¿¬»ê
+// pre ë’¤ì— ë…¸ë“œë¥¼ ì‚½ìž…í•˜ëŠ” ì—°ì‚°
 void insertMiddleNode(linkedList_h* CL, listNode* pre, char* x) {
 	listNode* newNode;
 	newNode = (listNode*)malloc(sizeof(listNode));
@@ -62,29 +62,29 @@ void insertMiddleNode(linkedList_h* CL, listNode* pre, char* x) {
 	}
 }
 
-// ¿øÇü ¿¬°á ¸®½ºÆ®ÀÇ pre µÚ¿¡ ÀÖ´Â ³ëµå old¸¦ »èÁ¦ÇÏ´Â ¿¬»ê
+// ì›í˜• ì—°ê²° ë¦¬ìŠ¤íŠ¸ì˜ pre ë’¤ì— ìžˆëŠ” ë…¸ë“œ oldë¥¼ ì‚­ì œí•˜ëŠ” ì—°ì‚°
 void deleteNode(linkedList_h* CL, listNode* old) {
-	listNode* pre;					// »èÁ¦ÇÒ ³ëµåÀÇ ¼±ÇàÀÚ ³ëµå¸¦ ³ªÅ¸³»´Â Æ÷ÀÎÅÍ	
-	if (CL->head == NULL) return;	// °ø¹é ¸®½ºÆ®ÀÎ °æ¿ì, »èÁ¦ ¿¬»ê Áß´Ü	
-	if (CL->head->link == CL->head) {	// ¸®½ºÆ®¿¡ ³ëµå°¡ ÇÑ °³¸¸ ÀÖ´Â °æ¿ì
-		free(CL->head);				    // Ã¹ ¹øÂ° ³ëµåÀÇ ¸Þ¸ð¸®¸¦ ÇØÁ¦ÇÏ°í
-		CL->head = NULL;				// ¸®½ºÆ® ½ÃÀÛ Æ÷ÀÎÅÍ¸¦ NULL·Î ¼³Á¤
+	listNode* pre;					// ì‚­ì œí•  ë…¸ë“œì˜ ì„ í–‰ìž ë…¸ë“œë¥¼ ë‚˜íƒ€ë‚´ëŠ” í¬ì¸í„°	
+	if (CL->head == NULL) return;	// ê³µë°± ë¦¬ìŠ¤íŠ¸ì¸ ê²½ìš°, ì‚­ì œ ì—°ì‚° ì¤‘ë‹¨	
+	if (CL->head->link == CL->head) {	// ë¦¬ìŠ¤íŠ¸ì— ë…¸ë“œê°€ í•œ ê°œë§Œ ìžˆëŠ” ê²½ìš°
+		free(CL->head);				    // ì²« ë²ˆì§¸ ë…¸ë“œì˜ ë©”ëª¨ë¦¬ë¥¼ í•´ì œí•˜ê³ 
+		CL->head = NULL;				// ë¦¬ìŠ¤íŠ¸ ì‹œìž‘ í¬ì¸í„°ë¥¼ NULLë¡œ ì„¤ì •
 		return;
 	}
-	else if (old == NULL) return;   // »èÁ¦ÇÒ ³ëµå°¡ ¾ø´Â °æ¿ì, »èÁ¦ ¿¬»ê Áß´Ü	
+	else if (old == NULL) return;   // ì‚­ì œí•  ë…¸ë“œê°€ ì—†ëŠ” ê²½ìš°, ì‚­ì œ ì—°ì‚° ì¤‘ë‹¨	
 	else {
-		pre = CL->head;				// Æ÷ÀÎÅÍ pre¸¦ ¸®½ºÆ®ÀÇ ½ÃÀÛ ³ëµå¿¡ ¿¬°á		
+		pre = CL->head;				// í¬ì¸í„° preë¥¼ ë¦¬ìŠ¤íŠ¸ì˜ ì‹œìž‘ ë…¸ë“œì— ì—°ê²°		
 		while (pre->link != old) {
-			pre = pre->link;			// ¼±ÇàÀÚ ³ëµå¸¦ Æ÷ÀÎÅÍ pre¸¦ ÀÌ¿ëÇØ Ã£À½
+			pre = pre->link;			// ì„ í–‰ìž ë…¸ë“œë¥¼ í¬ì¸í„° preë¥¼ ì´ìš©í•´ ì°¾ìŒ
 		}
 		pre->link = old->link;
 		if (old == CL->head)
 			CL->head = old->link;
-		free(old);					// »èÁ¦ ³ëµåÀÇ ¸Þ¸ð¸®¸¦ ÇØÁ¦	 		
+		free(old);					// ì‚­ì œ ë…¸ë“œì˜ ë©”ëª¨ë¦¬ë¥¼ í•´ì œ	 		
 	}
 }
 
-// ¿øÇü ¿¬°á ¸®½ºÆ®¿¡¼­ x ³ëµå¸¦ Å½»öÇÏ´Â ¿¬»ê
+// ì›í˜• ì—°ê²° ë¦¬ìŠ¤íŠ¸ì—ì„œ x ë…¸ë“œë¥¼ íƒìƒ‰í•˜ëŠ” ì—°ì‚°
 listNode* searchNode(linkedList_h* CL, char* x) {
 	listNode* temp;
 	temp = CL->head;
