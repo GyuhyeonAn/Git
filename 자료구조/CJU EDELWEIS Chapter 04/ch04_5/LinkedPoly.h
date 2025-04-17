@@ -1,5 +1,5 @@
 #pragma once
-// ´ÙÇ×½Ä ¸®½ºÆ®ÀÇ ³ëµå ±¸Á¶¸¦ ±¸Á¶Ã¼·Î Á¤ÀÇ
+// ë‹¤í•­ì‹ ë¦¬ìŠ¤íŠ¸ì˜ ë…¸ë“œ êµ¬ì¡°ë¥¼ êµ¬ì¡°ì²´ë¡œ ì •ì˜
 float coef;
 typedef struct ListNode {
 	float coef;
@@ -7,7 +7,7 @@ typedef struct ListNode {
 	struct ListNode* link;
 } ListNode;
 
-// ´ÙÇ×½Ä ¸®½ºÆ®ÀÇ head ³ëµå¸¦ ±¸Á¶Ã¼·Î Á¤ÀÇ
+// ë‹¤í•­ì‹ ë¦¬ìŠ¤íŠ¸ì˜ head ë…¸ë“œë¥¼ êµ¬ì¡°ì²´ë¡œ ì •ì˜
 typedef struct ListHead {
 	ListNode* head;
 } ListHead;

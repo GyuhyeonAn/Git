@@ -3,15 +3,15 @@
 #include <string.h>
 #include "DoubleLinkedList.h"
 
-// °ø¹é ÀÌÁß ¿¬°á ¸®½ºÆ®¸¦ »ý¼ºÇÏ´Â ¿¬»ê
+// ê³µë°± ì´ì¤‘ ì—°ê²° ë¦¬ìŠ¤íŠ¸ë¥¼ ìƒì„±í•˜ëŠ” ì—°ì‚°
 linkedList_h* createLinkedList_h(void) {
 	linkedList_h* DL;
-	DL = (linkedList_h*)malloc(sizeof(linkedList_h));	// Çìµå ³ëµå ÇÒ´ç
-	DL->head = NULL;					// °ø¹é ¸®½ºÆ®ÀÌ¹Ç·Î NULL·Î ¼³Á¤
+	DL = (linkedList_h*)malloc(sizeof(linkedList_h));	// í—¤ë“œ ë…¸ë“œ í• ë‹¹
+	DL->head = NULL;					// ê³µë°± ë¦¬ìŠ¤íŠ¸ì´ë¯€ë¡œ NULLë¡œ ì„¤ì •
 	return DL;
 }
 
-// ÀÌÁß ¿¬°á ¸®½ºÆ®¸¦ ¼ø¼­´ë·Î Ãâ·ÂÇÏ´Â ¿¬»ê
+// ì´ì¤‘ ì—°ê²° ë¦¬ìŠ¤íŠ¸ë¥¼ ìˆœì„œëŒ€ë¡œ ì¶œë ¥í•˜ëŠ” ì—°ì‚°
 void printList(linkedList_h* DL) {
 	listNode* p;
 	printf(" DL = (");
@@ -25,7 +25,7 @@ void printList(linkedList_h* DL) {
 	printf(") \n");
 }
 
-// pre µÚ¿¡ ³ëµå¸¦ »ðÀÔÇÏ´Â ¿¬»ê
+// pre ë’¤ì— ë…¸ë“œë¥¼ ì‚½ìž…í•˜ëŠ” ì—°ì‚°
 void insertNode(linkedList_h* DL, listNode* pre, char* x) {
 	listNode* newNode;
 	newNode = (listNode*)malloc(sizeof(listNode));
@@ -39,23 +39,23 @@ void insertNode(linkedList_h* DL, listNode* pre, char* x) {
 		newNode->rlink = pre->rlink;
 		pre->rlink = newNode;
 		newNode->llink = pre;
-		if (newNode->rlink != NULL)	// »ðÀÔ ÀÚ¸®¿¡ ´ÙÀ½ ³ëµå°¡ ÀÖ´Â °æ¿ì
+		if (newNode->rlink != NULL)	// ì‚½ìž… ìžë¦¬ì— ë‹¤ìŒ ë…¸ë“œê°€ ìžˆëŠ” ê²½ìš°
 			newNode->rlink->llink = newNode;
 	}
 }
 
-// ÀÌÁß ¿¬°á ¸®½ºÆ®¿¡¼­ old ³ëµå¸¦ »èÁ¦ÇÏ´Â ¿¬»ê
+// ì´ì¤‘ ì—°ê²° ë¦¬ìŠ¤íŠ¸ì—ì„œ old ë…¸ë“œë¥¼ ì‚­ì œí•˜ëŠ” ì—°ì‚°
 void deleteNode(linkedList_h* DL, listNode* old) {
-	if (DL->head == NULL) return;	// °ø¹é ¸®½ºÆ®ÀÎ °æ¿ì, »èÁ¦ ¿¬»ê Áß´Ü		
-	else if (old == NULL) return;	// »èÁ¦ÇÒ ³ëµå°¡ ¾ø´Â °æ¿ì, »èÁ¦ ¿¬»ê Áß´Ü	
+	if (DL->head == NULL) return;	// ê³µë°± ë¦¬ìŠ¤íŠ¸ì¸ ê²½ìš°, ì‚­ì œ ì—°ì‚° ì¤‘ë‹¨		
+	else if (old == NULL) return;	// ì‚­ì œí•  ë…¸ë“œê°€ ì—†ëŠ” ê²½ìš°, ì‚­ì œ ì—°ì‚° ì¤‘ë‹¨	
 	else {
 		old->llink->rlink = old->rlink;
 		old->rlink->llink = old->llink;
-		free(old);					// »èÁ¦ ³ëµåÀÇ ¸Þ¸ð¸® ÇØÁ¦	 		
+		free(old);					// ì‚­ì œ ë…¸ë“œì˜ ë©”ëª¨ë¦¬ í•´ì œ	 		
 	}
 }
 
-// ¸®½ºÆ®¿¡¼­ x ³ëµå¸¦ Å½»öÇÏ´Â ¿¬»ê
+// ë¦¬ìŠ¤íŠ¸ì—ì„œ x ë…¸ë“œë¥¼ íƒìƒ‰í•˜ëŠ” ì—°ì‚°
 listNode* searchNode(linkedList_h* DL, char* x) {
 	listNode* temp;
 	temp = DL->head;

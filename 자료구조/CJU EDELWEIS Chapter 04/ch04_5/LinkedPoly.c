@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "LinkedPoly.h"
 
-// °ø¹é ´ÙÇ×½Ä ¸®½ºÆ®¸¦ »ý¼ºÇÏ´Â ¿¬»ê
+// ê³µë°± ë‹¤í•­ì‹ ë¦¬ìŠ¤íŠ¸ë¥¼ ìƒì„±í•˜ëŠ” ì—°ì‚°
 ListHead* createLinkedList(void) {
 	ListHead* L;
 	L = (ListHead*)malloc(sizeof(ListHead));
@@ -9,7 +9,7 @@ ListHead* createLinkedList(void) {
 	return L;
 }
 
-// ´ÙÇ×½Ä ¸®½ºÆ®¿¡ ¸¶Áö¸· ³ëµå¸¦ Ãß°¡ÇÏ´Â ¿¬»ê
+// ë‹¤í•­ì‹ ë¦¬ìŠ¤íŠ¸ì— ë§ˆì§€ë§‰ ë…¸ë“œë¥¼ ì¶”ê°€í•˜ëŠ” ì—°ì‚°
 void appendTerm(ListHead* L, float coef, int expo) {
 	ListNode* newNode;
 	ListNode* p;
@@ -18,54 +18,54 @@ void appendTerm(ListHead* L, float coef, int expo) {
 	newNode->expo = expo;
 	newNode->link = NULL;
 
-	if (L->head == NULL) {		// ´ÙÇ×½Ä ¸®½ºÆ®°¡ °ø¹éÀÎ °æ¿ì
+	if (L->head == NULL) {		// ë‹¤í•­ì‹ ë¦¬ìŠ¤íŠ¸ê°€ ê³µë°±ì¸ ê²½ìš°
 		L->head = newNode;
 		return;
 	}
-	else {						// ´ÙÇ×½Ä ¸®½ºÆ®°¡ °ø¹éÀÌ ¾Æ´Ñ °æ¿ì
+	else {						// ë‹¤í•­ì‹ ë¦¬ìŠ¤íŠ¸ê°€ ê³µë°±ì´ ì•„ë‹Œ ê²½ìš°
 		p = L->head;
 		while (p->link != NULL) {
-			p = p->link;			// ¸®½ºÆ®ÀÇ ¸¶Áö¸· ³ëµå¸¦ Ã£À½ 
+			p = p->link;			// ë¦¬ìŠ¤íŠ¸ì˜ ë§ˆì§€ë§‰ ë…¸ë“œë¥¼ ì°¾ìŒ 
 		}
-		p->link = newNode;		// »õ ³ëµå ¿¬°á 
+		p->link = newNode;		// ìƒˆ ë…¸ë“œ ì—°ê²° 
 	}
 }
 
-// µÎ ´ÙÇ×½ÄÀÇ µ¡¼ÀÀ» ±¸ÇÏ´Â ¿¬»ê 
+// ë‘ ë‹¤í•­ì‹ì˜ ë§ì…ˆì„ êµ¬í•˜ëŠ” ì—°ì‚° 
 void addPoly(ListHead* A, ListHead* B, ListHead* C) {
 	ListNode* pA = A->head;
 	ListNode* pB = B->head;
 	float sum;
 
-	// µÎ ´ÙÇ×½Ä¿¡ ³ëµå°¡ ÀÖ´Â µ¿¾È ¹Ýº¹ ¼öÇà
+	// ë‘ ë‹¤í•­ì‹ì— ë…¸ë“œê°€ ìžˆëŠ” ë™ì•ˆ ë°˜ë³µ ìˆ˜í–‰
 	while (pA && pB) {
-		// ´ÙÇ×½Ä AÀÇ Áö¼ö°¡ ´ÙÇ×½Ä BÀÇ Áö¼ö¿Í °°Àº °æ¿ì
+		// ë‹¤í•­ì‹ Aì˜ ì§€ìˆ˜ê°€ ë‹¤í•­ì‹ Bì˜ ì§€ìˆ˜ì™€ ê°™ì€ ê²½ìš°
 		if (pA->expo == pB->expo) {
 			sum = pA->coef + pB->coef;
 			appendTerm(C, sum, pA->expo);
 			pA = pA->link; pB = pB->link;
 		}
-		// ´ÙÇ×½Ä AÀÇ Áö¼ö°¡ ´ÙÇ×½Ä BÀÇ Áö¼öº¸´Ù Å« °æ¿ì
+		// ë‹¤í•­ì‹ Aì˜ ì§€ìˆ˜ê°€ ë‹¤í•­ì‹ Bì˜ ì§€ìˆ˜ë³´ë‹¤ í° ê²½ìš°
 		else if (pA->expo > pB->expo) {
 			appendTerm(C, pA->coef, pA->expo);
 			pA = pA->link;
 		}
-		// ´ÙÇ×½Ä AÀÇ Áö¼ö°¡ ´ÙÇ×½Ä BÀÇ Áö¼öº¸´Ù ÀÛÀº °æ¿ì
+		// ë‹¤í•­ì‹ Aì˜ ì§€ìˆ˜ê°€ ë‹¤í•­ì‹ Bì˜ ì§€ìˆ˜ë³´ë‹¤ ìž‘ì€ ê²½ìš°
 		else {
 			appendTerm(C, pB->coef, pB->expo);
 			pB = pB->link;
 		}
 	}
-	// ´ÙÇ×½Ä A¿¡ ³²¾Æ ÀÖ´Â ³ëµå º¹»ç
+	// ë‹¤í•­ì‹ Aì— ë‚¨ì•„ ìžˆëŠ” ë…¸ë“œ ë³µì‚¬
 	for (; pA != NULL; pA = pA->link)
 		appendTerm(C, pA->coef, pA->expo);
 
-	// ´ÙÇ×½Ä B¿¡ ³²¾Æ ÀÖ´Â ³ëµå º¹»ç
+	// ë‹¤í•­ì‹ Bì— ë‚¨ì•„ ìžˆëŠ” ë…¸ë“œ ë³µì‚¬
 	for (; pB != NULL; pB = pB->link)
 		appendTerm(C, pB->coef, pB->expo);
 }
 
-// ´ÙÇ×½Ä ¸®½ºÆ®¸¦ Ãâ·ÂÇÏ´Â ¿¬»ê
+// ë‹¤í•­ì‹ ë¦¬ìŠ¤íŠ¸ë¥¼ ì¶œë ¥í•˜ëŠ” ì—°ì‚°
 void printPoly(ListHead* L) {
 	ListNode* p = L->head;
 	for (; p; p = p->link) {
