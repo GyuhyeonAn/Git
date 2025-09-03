@@ -6,8 +6,21 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": ".",
-      "program": "build/Debug/outDebug"
+      "cwd": "/Users/administrator/Documents/Git/자료구조/CJU EDELWEIS Chapter 06/ch06_3",
+      "program": "/Users/administrator/Documents/Git/자료구조/CJU EDELWEIS Chapter 06/ch06_3/build/Debug/outDebug"
+    },
+    {
+      "name": "C/C++: gcc 활성 파일 빌드 및 디버그",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "lldb",
+      "preLaunchTask": "C/C++: gcc 활성 파일 빌드"
     }
   ]
 }

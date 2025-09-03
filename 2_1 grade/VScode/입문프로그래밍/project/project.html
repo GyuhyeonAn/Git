@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>보안 뉴스</title>
+
+<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		h1, h2, h3, h4, h5, h6, p, li {
+			text-decoration: none;
+		}
+
+		h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover, p:hover, li:hover {
+			text-decoration: underline !important;
+		}
+
+		#center {
+			width: 1200px;
+			margin: 0 auto;
+			padding: 0;
+		}
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		#line {
+			height: 1px;
+			background-color: #aeadad;
+			width: 100vw;
+			margin: 0 auto;
+			box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+		}
+		header {
+			width: 100%;
+			margin: 0 auto;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			height: 70px;
+		}
+
+		#logo {  
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		#menu {
+			line-height: 50px;
+			list-style-type: none;
+			display: flex;
+			gap: 20px;
+			margin-left: auto;
+			align-items: center;
+
+		}
+		
+		#logo span {
+			font-size: 1.2em;
+			font-weight: bold;
+		}
+
+		#menu li {
+			list-style-type: none;
+			display: flex;
+			gap: 20px;
+			cursor: pointer;		
+			font-size: 1em;
+			transition: color 0.3s;
+		}
+
+		#main_news {
+			margin-top: 30px;
+			position: relative;
+			display: flex;
+			gap: 20px;
+			height: auto;
+			border-radius: 10px;
+		}
+
+		#image_text {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.5);
+			color: rgb(255, 255, 255);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 20px;
+			box-sizing: border-box;
+			opacity: 0;
+			transition: opacity 0.3s ease;
+			border-radius: 10px;
+		}
+
+		#image_black {
+			position: relative;
+			border-radius: 10px;
+			overflow: hidden;
+			width: 780px;
+			height: 440px;
+			cursor: pointer;
+		}
+
+		#main_news:hover #image_text {
+			opacity: 1;
+		}
+
+		#main_image_text {
+			font-size: 30px;
+			font-weight: bold;
+			text-align: center;
+			margin-bottom: -150px;
+		}
+
+		#image_text #line {
+			width: 100%;
+			height: 2px;
+			background-color: white;
+			margin: 10px 10px;
+		}
+
+		#main_image_text_exp {
+			font-size: 15px;
+			text-align: center;
+
+		}
+
+		#side_news {
+			width: 420px;
+			height: 440px;
+		}
+
+		#side_news h2 {
+			justify-content: center;
+			text-align: center;
+			border-bottom: 2px solid #707070;
+			padding-bottom: 8px;
+			margin-bottom: 15px;
+		}
+
+		#side_news ul li {
+			text-align: left;
+			list-style-type: none;
+			font-size: 20px;
+			line-height: 50px;
+		}
+
+		#middle_line {
+			margin-top: 20px;
+			margin-bottom: 20px;
+			height: 1px;
+			background-color: #c9c9c9;
+			width: 100%;
+			box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+		}
+
+		#middle_news {
+			display: flex;
+			gap: 50px;
+		}
+
+		#middle_left {
+			width: 210px;
+			display: flex;
+			flex-direction: column;
+			gap: 30px;
+			
+		}
+
+		#main_left_news_first {
+			line-height: 20px;
+		}
+
+		#main_left_news {
+			margin-top: 20px;
+			line-height: 20px;
+		}
+		
+		#mini_text {
+			margin-top: 10px;
+			flex-direction: column;
+			width: 210px;
+			font-size: 15px;
+			color: #949393;
+		}
+
+		#center_news {
+			width: 650px;
+			display: flex;
+			flex-direction: column;
+			gap: 25px;
+		}
+
+		#center_main_news{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 20px;
+			border-bottom: 0;
+		}
+
+		#main_news_text {
+			width: 500px;
+		}
+
+		#main_news_text h3{
+			font-size: 1.2em;
+			margin-bottom: 5px;
+		}
+
+		#main_news_text ul li{
+			list-style-position: inside;
+			font-size: 0.95em;
+			line-height: 1.5;
+			color: #555;
+		}
+
+		#main_news_image {
+			width: 200px;
+			height: 130px;
+			object-fit: cover;
+			border-radius: 5px;
+		}
+
+		#right_side_news {
+			width: 380px;
+			height: 500px;
+			background-color: #ffffff;
+			border: 2px solid #ddd;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+		}
+		
+		#right_side_news h2{
+			font-size: 20px;
+			color: #000000;
+			margin-bottom: 15px;
+			border-bottom: 2px solid #666;
+			padding-bottom: 8px; 
+		}
+
+		#right_side_news ul {
+			list-style-type: disc; 
+			padding-left: 20px;
+		}
+
+		#right_side_news li {
+			font-size: 16px;
+			margin-bottom: 10px;
+			color: #333;
+			line-height: 1.5;
+			cursor: pointer;
+		}
+
+		#right_side_news li:hover {
+			text-decoration: underline;
+			color: #333;	
+		}
+
+		#center_line {
+			width: 590px;
+			height: 1px;
+			background-color: #ccc;
+			margin: 0;
+			padding: 0;
+		}
+
+		footer {
+			width: 100%;
+			background-color: #f1f1f1;
+			padding: 20px 0;
+			font-size: 14px;
+			color: #555;
+			margin-top: 40px;
+		}
+
+		#footer_content {
+			width: 1200px;
+			margin: 0 auto;
+			text-align: center;
+		}
+
+		#footer_text {
+			margin-bottom: 15px;
+		}
+
+		#footer_text p {
+			font-size: 30px;
+			color: #666;
+		}
+
+		#footer_sns {
+			display: flex;
+			justify-content: center;
+			gap: 50px;
+		}
+
+		#footer_sns a img{
+			width: 60px;
+			height: 60px;
+			background-color: white;
+			border: 2px solid #ccc;
+			border-radius: 8px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			overflow: hidden;
+			transition: background-color 0.3s;
+			padding: 8px;
+		}
+
+		#footer_sns a:hover img{
+			background-color: #e4e4e4;
+		}
+
+		#sns_icon img {
+			width: 20px;
+			height: 20px;
+		}
+	</style>
+
+</head>
+<body>
+	<div id="center">
+		<header>
+			<div id="logo" >
+				<a href="https://www.cju.ac.kr/www/index.do" alt="청주대학교 홈페이지"><img src="/resource/CJU_Logo.svg" width="36" height="36"></a>
+				<h1>보안 뉴스</h1>
+			</div>	
+			<ul id="menu">
+				<li>로그인</li>
+				<li>회원가입</li>
+				<li>검색</li>
+			</ul>
+		</header>
+	</div>	<!--헤더-->
+	
+	<div id="line"></div>
+	
+	<div id="center">
+		<div id="main_news">
+			<div id="image_black">
+				<img src="/resource/news.jpg" width="780" height="440" style="border-radius: 10px;">
+				<div id="image_text">
+					<div id="main_image_text">
+						<p>예스24, 진짜 위기는 랜섬웨어 아니라 잃어버린 신뢰</p>
+						<div id="line"></div>
+						<div id="main_image_text_exp">
+							국내 최대 온라인 서점인 예스24가 지난 9일 랜섬웨어 공격으로 서비스 장애가 발생했다.
+							예스24는 지난 9일부터 시작된 일련의 사태를 시스템 장애 현상이라 공지했다. 
+							하지만 다음날 한국인터넷진흥원에 랜섬웨어로 신고한 사실이 드러나며 거짓임이 밝혀졌다.
+							11일 KISA와 조사 협조 문제 진실 공방도 벌어졌다. 
+							이 사이 개인정보 유출 가능성에 대해서도 전면 부정에서 가능성을 열어두는 방향으로 변화했다. 
+							첫 공지는 해커와 협상 과정에서 조기 수습을 고려해 진행한 것이 아니냐는 의혹도 남아있다.
+						</div>
+					</div>
+				</div><!--메인 뉴스 -->
+			</div>
+			<div id="side_news">
+				<h2>오늘의 추천 뉴스</h2>
+				<ul>
+					<li>예스24, 진짜 위기는 랜섬웨어 아니라 잃어버린 ...</li>
+					<li>시총 1위 삼성전자, 보안 투자 순위는? </li>
+					<li>신동규 한국인터넷정보학회 회장 “IT 기술의 ...</li>
+					<li>[SKT 해킹 사태] 자체 조사선 CDR 유출 없어...</li>
+					<li>AI 시대, Apple 기기의 보안과 생산성 ‘Jam...</li>
+					<li>[예스24 해킹] 예스24, 랜섬웨어 일주일 만에 ...</li>
+					<li>카이스트, 신종 보이스피싱 차단 온디바이스 AI...</li>
+					<li>파라과이 全 국민 개인정보 다크웹 유출, 해커...</li>
+				</ul>
+			</div>
+		</div> <!--사이드 뉴스 -->
+
+	<div id="middle_line"></div>	
+
+	</div>
+	<div id="center">
+		<div id="middle_news">
+			<div id="middle_left">
+				<div id="main_left_news_first">
+					<img src="/resource/middle_side_1.jpg" width="200" height="150">
+					<h4>안랩, 베트남에서 제조업 특화 사이버보안 기술 선보여</h4>
+					<p id="mini_text">
+						안랩(대표 강석균)이 베트남에서 제조업에 특화된 사이버보안 기술을 선보였다고 15일 밝혔다.
+					</p>
+				</div>
+				<div id="main_left_news">
+					<img src="/resource/middle_side_2.png" width="200" height="150">
+					<h4>딥시크 R1 위장한 멀웨어,<br> 암호화폐 지갑 노린다</h4>
+					<p id="mini_text">
+						러시아 해커 그룹이 중국 AI 딥시크 오픈소스 모델 ‘딥시크 R1’의 인기를 
+						악용해 윈도우 사용자를 노린 새로운 악성코드를 배포하고 있다.
+					</p>
+				</div>
+				<div id="main_left_news">
+					<img src="/resource/side_china.jpg" width="200" height="150" style="object-fit: cover;">
+					<h4>“모든 국민이 첩보원이다?" 중국 국가정보법의 실체</h4>
+					<p id="mini_text">
+						안랩은 최근 보고서를 통해 “어스블루크로가 한국 통신사 해킹 사건의 배후일 가능성을 조사하고 있다”며 
+						그 근거로 이번 해킹에 사용된 ‘BPF도어’ 악성코드가 중국 APT 그룹의 전형적 수법으로 알려져 있다는 점을 들었다.
+					</p>
+				</div>
+			</div><!--왼쪽 메인 뉴스-->
+
+			<div id="center_news">
+				<div id="center_main_news">
+					<div id="main_news_text">
+						<h3>[신간] 데이비드 월 교수의 ‘사이버 범죄’ 개정판</h3>
+						<ul>
+							<li>'범죄'의 개념이 더 이상 물리적 공간에만 머물지 않는다.</li>
+							<li>‘사이버 범죄’는 디지털 사회의 권력, 신뢰, 통제 등의 문제를 심도 있게 탐구한다.</li>
+						</ul>
+					</div>
+					<div id="main_news_image">
+						<img src="/resource/main_news_cyber.jpg" width="120" height="120">
+					</div>
+				</div>
+
+				<div id="center_line"></div>
+				
+				<div id="center_main_news">
+					<div id="main_news_text">
+						<h3>Chrome 긴급 패치 지금 안 하면 위험</h3>
+					</div>
+					<div id="main_news_image">
+						<img src="/resource/main_news_chrome.jpg" width="120" height="120">
+					</div>
+				</div>
+
+				<div id="center_line"></div>
+
+				<div id="center_main_news">
+					<div id="main_news_text">
+						<h3>TTA, 내달 민간 부문 CCTV 보안인증 서비스 제공</h3>
+						<ul>
+							<li>민간 부문 영상정보처리기기를 대상으로 보안인증 서비스를 제공</li>
+							<li>다중이용시설 등에 대해 보안인증 제품 사용을 의무화하는 법률 제정을 준비 중</li>
+						</ul>
+					</div>
+					<div id="main_news_image">
+						<img src="/resource/main_CCTV.png" width="120" height="120">
+					</div>
+				</div>
+
+				<div id="center_line"></div>
+
+				<div id="center_main_news">
+					<div id="main_news_text">
+						<h3>구직자 대상 해킹 조직 핀6, 인사팀 겨냥 백도어 유포</h3>
+						<ul>
+							<li>핀6는 금전적 목적으로 활동하는 사이버 범죄 조직</li>
+							<li>악성코드가 담긴 페이지로 연결되는 피싱 메일을 전송한다.</li>
+						</ul>
+					</div>
+					<div id="main_news_image">
+						<img src="/resource/main_backdoor.jpg" width="120" height="120">
+					</div>
+				</div>
+
+				<div id="center_line"></div>
+
+				<div id="center_main_news">
+					<div id="main_news_text">
+						<h3>SKT, 침해 사고 관련 정보 통합 안내 페이지 개설</h3>
+						<ul>
+							<li>사고 관련 정보를 제공하는 통합 안내 페이지를 개설</li>
+							<li>고객 정보보호를 위한 통합 안내 페이지를 개설 예정</li>
+						</ul>
+					</div>
+					<div id="main_news_image">
+						<img src="/resource/main_SKT.jpg" width="120" height="120">
+					</div>
+				</div>
+
+				<div id="center_line"></div>
+				
+				<div id="center_main_news">
+					<div id="main_news_text">
+						<h3>KISA, 예스24 입장문 반박, 기술지원 협조안해</h3>
+						<ul>
+							<li>KISA의 기술지원에 협조하지 않고 있다고 밝혔다.</li>
+							<li>예스24는 KISA의 기술지원에 협조하지 않고 있다</li>
+						</ul>
+					</div>
+					<div id="main_news_image">
+						<img src="/resource/main_yes24.svg" width="120" height="120">
+					</div>
+				</div>
+
+				<div id="center_line"></div>
+
+				<div id="center_main_news">
+					<div id="main_news_text">
+						<h3>A10 네트웍스, ‘인터롭 도쿄 2025’에서 AI ·고성능 보안 부문 ‘특별상’</h3>
+						<ul>
+							<li>네트워크 보안 장비 전문 기업 A10 네트웍스</li>
+							<li>‘인터롭 도쿄 2025’에서 특별상을 수상했다고 밝혔다.</li>
+						</ul>
+					</div>
+					<div id="main_news_image">
+						<img src="/resource/main_A10.jpg" width="120" height="120">
+					</div>
+				</div>
+			</div>	<!-- 중앙뉴스 -->
+			
+			<aside id="right_side_news">
+				<h2>HOT 뉴스 </h2>
+				<ul>
+					<li>랜섬웨어 협상 가능성도?</li>
+					<li>25달러면 누구나 해커된다</li>
+					<li>예스24 사이트 복구 e북..</li>
+					<li>“모든 국민이 첩보원이다"</li>
+					<li>딥시크 R1 위장한 멀웨어</li>
+					<li>SKT 사태, 손해배상 소송</li>
+					<li>개인정보 공유 앱으로 46억</li>
+					<li>기업 보안의 완성</li>
+					<li>“국가 사이버 보안 역량 강화</li>
+					<li>다크웹 AI 해킹 도구</li>
+					<li>사이버 위기, 미리 훈련해야 </li>
+					<li>LG 매장은 보안 전문 매장</li>					
+				</ul>
+			</aside>
+		</div>
+	</div>
+
+	<footer>
+		<div id="footer_content">
+			<div id="footer_text">
+				<p>입문 프로그래밍 언어 기말 프로젝트</p>
+			</div>
+			<div id="footer_sns">
+				<a href="https://www.kakaocorp.com/service/KakaoTalk" target="_blank" id="sns_icon">
+					<img src="/resource/kakao.icon" alt="KakaoTalk"> </a>
+				<a href="https://www.youtube.com" target="_blank" id="sns_icon">
+					<img src="/resource/youtube.png" alt="YouTube"> </a>	
+				<a href="https://www.instagram.com" target="_blank" id="sns_icon">
+					<img src="/resource/inst.png" alt="Instagram"> </a>
+				<a href="https://twitter.com" target="_blank" id="sns_icon">
+					<img src="/resource/X.png" alt="X"> </a>
+				<a href="https://www.cju.ac.kr" target="_blank" id="sns_icon">
+					<img src="/resource/CJU_Logo.svg" alt="CJU"> </a>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
